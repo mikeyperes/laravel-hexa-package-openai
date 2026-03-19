@@ -1,0 +1,23 @@
+{
+    "name": "hexawebsystems/laravel-hexa-package-openai",
+    "description": "OpenAI Integration \u2014 Whisper audio transcription and OpenAI API services for Hexa Web Systems.",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "hexa_package_openai\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "hexa_package_openai\\Providers\\OpenaiServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
