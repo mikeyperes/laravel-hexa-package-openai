@@ -55,5 +55,12 @@ class OpenaiServiceProvider extends ServiceProvider
         view()->composer('settings.index', function ($view) {
             $view->getFactory()->startPush('settings-cards', view('openai::partials.settings-card')->render());
         });
-    }
+    
+        // Documentation
+        if (class_exists(\hexa_core\Services\DocumentationService::class)) {
+            app(\hexa_core\Services\DocumentationService::class)->register('openai', 'OpenAI API', 'hexawebsystems/laravel-hexa-package-openai', [
+                ['title' => 'Overview', 'content' => '<p>OpenAI API integration. Provides API key management and connection testing.</p>'],
+            ]);
+        }
+}
 }
