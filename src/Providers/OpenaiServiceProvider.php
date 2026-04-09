@@ -38,7 +38,8 @@ class OpenaiServiceProvider extends ServiceProvider
         // Sidebar links — package-owned and auto-wired into the core registry.
         $registry = app(\hexa_core\Services\PackageRegistryService::class);
         $registry->registerSidebarLink('settings.openai', 'OpenAI', 'M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z', 'OpenAI', 'openai', 61);
-        $registry->registerPackage('openai', 'hexawebsystems/laravel-hexa-package-openai', [
+        if (method_exists($registry, 'registerPackage')) {
+            $registry->registerPackage('openai', 'hexawebsystems/laravel-hexa-package-openai', [
             'title' => 'OpenAI',
             'settingsRoute' => 'settings.openai',
             'docsSlug' => 'openai',
@@ -50,7 +51,8 @@ class OpenaiServiceProvider extends ServiceProvider
                 ['label' => 'OpenAI API Keys', 'url' => 'https://platform.openai.com/api-keys'],
                 ['label' => 'OpenAI Docs', 'url' => 'https://platform.openai.com/docs'],
             ],
-        ]);
+            ]);
+        }
 
         // Settings card on /settings page
         $this->registerSettingsCard();
@@ -63,10 +65,8 @@ class OpenaiServiceProvider extends ServiceProvider
      */
     private function registerSettingsCard(): void
     {
-        view()->composer('settings.index', function ($view) {
-            $view->getFactory()->startPush('settings-cards', view('openai::partials.settings-card')->render());
-        });
-    
+        // Legacy settings-card push removed — core renders package cards from registry
+
         // Documentation
         if (class_exists(\hexa_core\Services\DocumentationService::class)) {
             app(\hexa_core\Services\DocumentationService::class)->register('openai', 'OpenAI API', 'hexawebsystems/laravel-hexa-package-openai', [
