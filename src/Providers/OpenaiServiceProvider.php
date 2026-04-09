@@ -41,6 +41,8 @@ class OpenaiServiceProvider extends ServiceProvider
         if (method_exists($registry, 'registerPackage')) {
             $registry->registerPackage('openai', 'hexawebsystems/laravel-hexa-package-openai', [
             'title' => 'OpenAI',
+            'color' => 'emerald',
+            'icon' => 'M13 10V3L4 14h7v7l9-11h-7z',
             'settingsRoute' => 'settings.openai',
             'docsSlug' => 'openai',
             'instructions' => [
