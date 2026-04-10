@@ -4,14 +4,6 @@
 @section('content')
 <div class="max-w-4xl mx-auto" x-data="openaiSettings()">
 
-    {{-- Breadcrumb --}}
-    <nav class="mb-6 text-sm">
-        <ol class="flex items-center gap-2 text-gray-500">
-            <li><a href="{{ route('settings.index') }}" class="hover:text-purple-600 transition-colors">Settings</a></li>
-            <li><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></li>
-            <li class="text-gray-900 font-medium">OpenAI</li>
-        </ol>
-    </nav>
 
     {{-- Page Header --}}
     <div class="mb-8">
