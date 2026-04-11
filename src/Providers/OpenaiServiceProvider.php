@@ -44,6 +44,7 @@ class OpenaiServiceProvider extends ServiceProvider
             'color' => 'emerald',
             'icon' => 'M13 10V3L4 14h7v7l9-11h-7z',
             'settingsRoute' => 'settings.openai',
+            'settingsShellClass' => 'max-w-4xl',
             'docsSlug' => 'openai',
             'instructions' => [
                 'Create an API key in the OpenAI dashboard.',
