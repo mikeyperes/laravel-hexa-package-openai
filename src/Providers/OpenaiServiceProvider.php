@@ -37,6 +37,10 @@ class OpenaiServiceProvider extends ServiceProvider
 
         // Sidebar links — package-owned and auto-wired into the core registry.
         $registry = app(\hexa_core\Services\PackageRegistryService::class);
+            // [L1/L2 sidebar hierarchy — auto-registered]
+            $registry->registerDomainGroup('AI', 'M13 10V3L4 14h7v7l9-11h-7z', 50);
+            $registry->registerSectionGroup('OpenAI', 'AI', 'M12 14l9-5-9-5-9 5 9 5z', 57);
+            // [/L1/L2]
         $registry->registerSidebarLink('settings.openai', 'OpenAI', 'M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z', 'OpenAI', 'openai', 61);
         if (method_exists($registry, 'registerPackage')) {
             $registry->registerPackage('openai', 'hexawebsystems/laravel-hexa-package-openai', [
