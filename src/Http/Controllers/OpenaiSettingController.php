@@ -6,7 +6,6 @@ use hexa_core\Http\Controllers\Controller;
 use hexa_core\Models\Setting;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
 /**
@@ -54,21 +53,13 @@ class OpenaiSettingController extends Controller
             return response()->json(['success' => false, 'message' => 'No API key configured.']);
         }
 
-        try {
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $apiKey,
-            ])->get('https://api.openai.com/v1/models');
+        $result = app(\hexa_package_openai\Services\OpenAiApiService::class)->testConnection((string) $apiKey);
 
-            if ($response->successful()) {
-                return response()->json(['success' => true, 'message' => 'API key is valid.']);
-            }
-
-            $body = $response->json();
-            $errorMsg = $body['error']['message'] ?? ('HTTP ' . $response->status());
-
-            return response()->json(['success' => false, 'message' => 'Validation failed: ' . $errorMsg]);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Connection error: ' . $e->getMessage()]);
+        if ($result["success"] ?? false) {
+            return response()->json(["success" => true, "message" => "API key is valid."]);
         }
+
+        return response()->json(["success" => false, "message" => "Validation failed: " . (string) ($result["message"] ?? "OpenAI validation failed.")]);
+
     }
 }

@@ -4,6 +4,7 @@ namespace hexa_package_openai\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use hexa_package_openai\Services\WhisperService;
+use hexa_package_openai\Services\OpenAiApiService;
 
 /**
  * OpenaiServiceProvider -- registers OpenAI package services, routes, views, and migrations.
@@ -21,6 +22,10 @@ class OpenaiServiceProvider extends ServiceProvider
 
         $this->app->singleton(WhisperService::class, function ($app) {
             return new WhisperService();
+        });
+
+        $this->app->singleton(OpenAiApiService::class, function ($app) {
+            return new OpenAiApiService();
         });
     }
 
